@@ -1,4 +1,4 @@
-# 🐧 Bandit Level 01 → Level 02
+# 🐧 Bandit Level 05 → Level 06
 
 ## 🎯 Objetivo
 > <img width="1116" height="250" alt="13" src="https://github.com/user-attachments/assets/ffdaa841-be31-4e69-add5-3e257e00587f" />
@@ -24,4 +24,4 @@ La contraseña del siguiente nivel está almacenada en algún archivo dentro de 
 
 🚩 Flag
 
-PK8fYLZg2hnHSz83plBL1iEPKdD3QToB
+pXa26xhMWaC2SvDotA4r9EgZkulOeSBW
