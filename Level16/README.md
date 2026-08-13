@@ -14,6 +14,82 @@ En este nivel, las credenciales del siguiente nivel se obtienen enviando la cont
 
 🧠 Concepto: escaneo de puertos, identificación de servicios y conexiones SSL/TLS.
 
+Paso 1. Escanear los puertos
+
+Puedes usar nmap:
+
+nmap -p31000-32000 localhost
+
+Obtendrás algo parecido a:
+
+PORT      STATE SERVICE
+31046/tcp open
+31518/tcp open
+31691/tcp open
+31790/tcp open
+31960/tcp open
+
+Anota esos puertos.
+
+Paso 2. Averiguar cuáles usan SSL
+
+Prueba cada puerto con openssl:
+
+openssl s_client -connect localhost:31046
+
+Si no usa SSL, verás errores como:
+
+wrong version number
+
+o
+
+handshake failure
+
+Si sí usa SSL, verás algo como:
+
+CONNECTED(00000003)
+Certificate chain
+...
+
+Haz esto con cada puerto abierto.
+
+Paso 3. Enviar la contraseña
+
+Cuando encuentres un puerto que use SSL:
+
+cat /etc/bandit_pass/bandit16 | openssl s_client -connect localhost:PUERTO -quiet
+
+Reemplaza PUERTO por el puerto correcto.
+
+La mayoría de los servidores simplemente te devolverán la contraseña que enviaste.
+
+Solo uno responderá con algo parecido a:
+
+-----BEGIN RSA PRIVATE KEY-----
+...
+-----END RSA PRIVATE KEY-----
+
+⚠️ Eso no es una contraseña, sino una clave privada SSH.
+
+Paso 4. Guardar la clave
+
+Cuando aparezca la clave:
+
+nano sshkey.private
+
+Pega todo el contenido:
+
+-----BEGIN RSA PRIVATE KEY-----
+...
+-----END RSA PRIVATE KEY-----
+
+Guarda el archivo.
+
+Paso 5. Dar permisos
+chmod 600 sshkey.private
+Paso 6. Conectarte
+ssh -i sshkey.private bandit17@localhost -p 2220
+
 <img width="595" height="192" alt="48" src="https://github.com/user-attachments/assets/0f8dedb7-e2e9-4900-8fef-fe1b439a7a68" />
 <img width="931" height="338" alt="49" src="https://github.com/user-attachments/assets/8b6e0d71-41c1-4980-acaa-a0b84017211f" />
 <img width="668" height="416" alt="50" src="https://github.com/user-attachments/assets/7a3206f3-9961-4efb-8840-180027a28e28" />
