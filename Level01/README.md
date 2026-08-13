@@ -1,4 +1,4 @@
-# 🐧 Bandit Level 00 → Level 01
+# 🐧 Bandit Level 01 → Level 02
 
 ## 🎯 Objetivo
 > <img width="1129" height="245" alt="5" src="https://github.com/user-attachments/assets/bcc904da-b346-465b-864b-14ea47c22424" />
